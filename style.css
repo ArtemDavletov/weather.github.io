@@ -1,0 +1,185 @@
+#grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 2vw;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    grid-gap: 2vw;
+    padding-bottom: .5em;
+}
+
+/* intro block */
+.header > .intro {
+    display: flex;
+    font-size: 5vw;
+    padding: .5em;
+    text-align: center;
+}
+
+.intro > .introText {
+    display: flex;
+    flex-grow: 1;
+}
+
+button.introButton {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+/* currentCity block */
+.currentCity {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: .5em;
+    flex-basis: auto;
+}
+
+.currentCity > .shortCityInfo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: .5em;
+}
+
+.shortCityInfo > .shortCityInfoName {
+    display: flex;
+    flex-grow: 1;
+    align-self: stretch;
+    padding: .5em;
+}
+
+.shortCityInfo > .shortCityInfoParams{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2vw;
+}
+
+.shortCityInfo > .shortCityInfoDegrees {
+    font-size: 2vw;
+}
+
+img.shortCityInfoWeatherImage {
+    height: 100px;
+}
+
+.currentCityItem {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: 5vw;
+    padding: .5em;
+    text-align: center;
+    gap: 2vw;
+}
+
+/* addCity block*/
+.header > .addCity {
+    display: flex;
+    font-size: 5vw;
+    padding: .5em;
+    text-align: center;
+}
+
+.addCity > .addCityText {
+    display: flex;
+    flex-grow: 1;
+}
+
+.addCity > .addCityBox {
+    text-align: right;
+}
+
+label {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
+
+.addCity > input.addCityInput {
+    margin-left: auto;
+    padding: .5em;
+}
+
+.addCity > button.addCityButton {
+    padding: .5em;
+}
+
+
+/* cityItems block*/
+.cityItems {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2vw;
+}
+
+.cityItem {
+    display: flex;
+    flex-direction: column;
+    font-size: 5vw;
+    padding: .5em;
+    text-align: center;
+    gap: 2vw;
+}
+
+.cityMainItem {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    font-size: 5vw;
+    padding: .5em;
+    text-align: center;
+    flex-grow: 1;
+    gap: 2vw;
+    flex-basis: auto;
+}
+
+.cityItem > .mainInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+
+.mainInfo > .mainInfoCityName {
+    text-align: left;
+}
+
+.mainInfo > .mainInfoDegrees {
+    text-align: left;
+}
+
+.mainInfo > img.mainInfoCityWeatherIcon {
+    height: 50px;
+}
+
+.mainInfo > button.mainInfoDeleteButton {
+    text-align: right;
+    margin-left: auto;
+}
+
+.cityItemPoint {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 2vw;
+    padding: .5em;
+    background: #a7afb1;
+    text-align: center;
+}
+
+.cityItemPoint > .cityItemPointName {
+    display: flex;
+    flex-grow: 1;
+}
+
+.cityItemPoint > .cityItemPointParameter {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+}
