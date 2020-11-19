@@ -1,189 +1,154 @@
-#grid {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-gap: 2vw;
+.currentCity, .favourites {
+    max-width: 480px;
+    margin: 0 auto;
 }
 
-body {
-    max-width: 800px;
+.currentCityHeader, .currentCityBody, .favouritesHeader {
+    padding: 0 10px;
 }
 
-.header {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 5fr 1fr;
-    grid-gap: 2vw;
-    padding-bottom: .5em;
+.favouriteCity, .currentCityItems {
+    flex-basis: 100%;
 }
 
-/* intro block */
-.header > .intro {
+@media only screen and (min-width: 910px) {
+
+    .currentCity, .favourites {
+        max-width: 910px;
+    }
+
+    .favouriteCity, .currentCityItems {
+        flex-basis: 45%;
+    }
+
+}
+
+@media only screen and (min-width: 1350px) {
+
+    .favourites {
+        max-width: 1350px;
+    }
+}
+
+/* current city */
+.currentCityBody{
+    align-items: center;
     display: flex;
-    font-size: 5vw;
-    padding: .5em;
-    text-align: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.intro > .introText {
+.currentCityBodyInfo {
     display: flex;
-    flex-grow: 1;
+    align-items: center;
+    align-content: stretch;
+    height: 100%;
+    flex-wrap: wrap;
 }
 
-button.introButton {
+.currentCityBody h3 {
+    margin: 0;
+    width: 100%;
+}
+
+/* Main info for current city */
+.currentCityName {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.currentCityTemperature {
+    font-size: 60px;
+    margin: 0;
+}
+
+.currentCityPicture {
+    width: 80px;
+    margin-left: 20px;
+}
+
+/* City items */
+.cityItemPoint {
     display: flex;
-    justify-content: center;
-    flex-grow: 1;
+    margin-top: 5px;
+    background-color: #a7afb1;
+    color: black;
+    padding: 5px;
+    border-radius: 5px;
 }
 
-/* currentCity block */
-.currentCity {
+.cityItemPointName {
+    margin: 0;
+    font-weight: bold;
+}
+
+.cityItemPointValue {
+    margin: 0 0 0 auto;
+}
+
+.currentCityHeader, .favouritesHeader {
     display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    padding: .5em;
-    flex-basis: auto;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.currentCity > .shortCityInfo {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: .5em;
-}
-
-.shortCityInfo > .shortCityInfoName {
-    display: flex;
-    flex-grow: 1;
-    align-self: stretch;
-    padding: .5em;
-}
-
-.shortCityInfo > .shortCityInfoParams{
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 2vw;
-}
-
-.shortCityInfo > .shortCityInfoDegrees {
-    font-size: 2vw;
-}
-
-img.shortCityInfoWeatherImage {
-    height: 100px;
-}
-
-.currentCityItem {
+/* */
+ul.favouritesCities {
+    justify-content: flex-start;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    font-size: 5vw;
-    padding: .5em;
+}
+
+li.favouriteCity {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    width: 390px;
+}
+
+.favouriteCityHeader {
+    display: flex;
+    align-items: center;
+}
+
+.favouriteCityName {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.favouriteCityTemperature {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 0 0 0.5em;
+}
+
+.favouriteCityWeatherPicture {
+    width: 44px;
+    margin-left: 1em;
+}
+
+button {
+    font-size: 250%;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    cursor: pointer;
     text-align: center;
-    gap: 2vw;
-}
-
-/* addCity block*/
-.header > .addCity {
-    display: flex;
-    font-size: 5vw;
-    padding: .5em;
-    text-align: center;
-}
-
-.addCity > .addCityText {
-    display: flex;
-    flex-grow: 1;
-}
-
-.addCity > .addCityBox {
-    text-align: right;
-}
-
-label {
-    display: flex;
-    justify-content: flex-end;
-    flex-grow: 1;
-}
-
-.addCity > input.addCityInput {
-    margin-left: auto;
-    padding: .5em;
-}
-
-.addCity > button.addCityButton {
-    padding: .5em;
-}
-
-
-/* cityItems block*/
-.cityItems {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 2vw;
-}
-
-ul.cityItem {
-    display: flex;
-    flex-direction: column;
-    font-size: 5vw;
-    padding: .5em;
-    text-align: center;
-    gap: 2vw;
-}
-
-ul.cityMainItem {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    font-size: 5vw;
-    padding: .5em;
-    text-align: center;
-    flex-grow: 1;
-    gap: 2vw;
-    flex-basis: auto;
-}
-
-.cityItem > li.mainInfo {
-    display: flex;
-    flex-direction: row;
-    gap: 2vw;
-}
-
-.mainInfo > .mainInfoCityName {
-    text-align: left;
-}
-
-.mainInfo > .mainInfoDegrees {
-    text-align: left;
-}
-
-.mainInfo > img.mainInfoCityWeatherIcon {
-    height: 50px;
-}
-
-.mainInfo > button.mainInfoDeleteButton {
-    text-align: right;
     margin-left: auto;
 }
 
-li.cityItemPoint {
-    display: flex;
-    flex-wrap: wrap;
-    font-size: 2vw;
-    padding: .5em;
-    background: #a7afb1;
-    text-align: center;
+button:hover {
+    color: #a7afb1;
 }
 
-.cityItemPoint > .cityItemPointName {
-    display: flex;
-    flex-grow: 1;
+ul {
+    padding-left: 0;
+    margin-left: 0;
 }
 
-.cityItemPoint > .cityItemPointParameter {
-    display: flex;
-    justify-content: flex-end;
-    flex-grow: 1;
+li {
+    list-style-type: none;
 }
