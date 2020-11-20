@@ -136,7 +136,24 @@ button {
     border: none;
 }
 
-button:hover {
+input.addFavorite {
+    font-size: 175%;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    cursor: pointer;
+    text-align: center;
+    margin-left: auto;
+    border-radius: 50%;
+    background-color: #a7afb1;
+    border: none;
+}
+
+input {
+    vertical-align: middle;
+}
+
+button:hover, input.addFavorite:hover {
     color: aliceblue;
 }
 
