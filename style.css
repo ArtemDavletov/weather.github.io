@@ -23,13 +23,6 @@
 
 }
 
-@media only screen and (min-width: 1350px) {
-
-    .favourites {
-        max-width: 1350px;
-    }
-}
-
 /* current city */
 .currentCityBody{
     align-items: center;
@@ -46,7 +39,7 @@
     flex-wrap: wrap;
 }
 
-.currentCityBody h3 {
+.currentCityBody h2 {
     margin: 0;
     width: 100%;
 }
@@ -96,13 +89,13 @@
 
 /* */
 ul.favouritesCities {
-    justify-content: flex-start;
+    justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
 }
 
 li.favouriteCity {
-    padding: 10px;
+    padding: 0;
     border-radius: 5px;
     margin: 10px;
     width: 390px;
@@ -147,6 +140,8 @@ button:hover {
 ul {
     padding-left: 0;
     margin-left: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
 li {
