@@ -124,17 +124,20 @@ li.favouriteCity {
 }
 
 button {
-    font-size: 250%;
+    font-size: 200%;
     width: 1em;
     height: 1em;
     line-height: 1;
     cursor: pointer;
     text-align: center;
     margin-left: auto;
+    border-radius: 50%;
+    background-color: #a7afb1;
+    border: none;
 }
 
 button:hover {
-    color: #a7afb1;
+    color: aliceblue;
 }
 
 ul {
