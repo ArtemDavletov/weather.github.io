@@ -11,237 +11,25 @@
     <section class="currentCity">
         <div class="currentCityHeader">
             <h1>Погода здесь</h1>
-            <input type="submit" value="Обновить геолокацию">
-            <botton></botton>
+            <form method="get" name="refresh">
+                <input type="submit" value="Обновить геолокацию">
+                <botton></botton>
+            </form>
         </div>
-        <div class="currentCityBody">
-            <div class="currentCityBodyInfo">
-                <h2 class="currentCityName">Saint Petersburg</h2>
-                <p class="currentCityTemperature">8˚C</p>
-                <img class="currentCityPicture" src="img.jpg">
-            </div>
-            <ul class="currentCityItems">
-                <li class="cityItemPoint">
-                    <p class="cityItemPointName">Ветер</p>
-                    <p class="cityItemPointValue">10.0 m/s, North-northwest</p>
-                </li>
-                <li class="cityItemPoint">
-                    <p class="cityItemPointName">Облачность</p>
-                    <p class="cityItemPointValue">Broken clouds</p>
-                </li>
-                <li class="cityItemPoint">
-                    <p class="cityItemPointName">Давление</p>
-                    <p class="cityItemPointValue">1013 hpa</p>
-                </li>
-                <li class="cityItemPoint">
-                    <p class="cityItemPointName">Влажность</p>
-                    <p class="cityItemPointValue">53%</p>
-                </li>
-                <li class="cityItemPoint">
-                    <p class="cityItemPointName">Координаты</p>
-                    <p class="cityItemPointValue">[59.88, 30.42]</p>
-                </li>
-            </ul>
-        </div>
+        <div class="currentCityBody"></div>
     </section>
     <section class="favourites">
         <div class="favouritesHeader">
             <h2>Избранное</h2>
-            <form>
-                <input type="text" placeholder="Добавить новый город">
+            <form method="get" name="addFavorite">
+                <input type="text" id="addFavorite" name="addFavorite" placeholder="Добавить новый город">
                 <input type="submit" value="+" class="addFavorite">
             </form>
         </div>
 
-        <ul class="favouritesCities">
-            <li class="favouriteCity">
-                <div class="favouriteCityHeader">
-                    <h3 class="favouriteCityName">Moscow</h3>
-                    <p class="favouriteCityTemperature">5˚C</p>
-                    <img class="favouriteCityWeatherPicture" src="img.jpg" alt="small rain icon">
-                    <button class="close">&times;</button>
-                </div>
-                <ul class="favouriteCityMain">
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Ветер</p>
-                        <p class="cityItemPointValue">10.0 m/s, North-northwest</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Облачность</p>
-                        <p class="cityItemPointValue">Broken clouds</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Давление</p>
-                        <p class="cityItemPointValue">1013 hpa</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Влажность</p>
-                        <p class="cityItemPointValue">53%</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Координаты</p>
-                        <p class="cityItemPointValue">[59.88, 30.42]</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="favouriteCity">
-                <div class="favouriteCityHeader">
-                    <h3 class="favouriteCityName">Moscow</h3>
-                    <p class="favouriteCityTemperature">5˚C</p>
-                    <img class="favouriteCityWeatherPicture" src="img.jpg" alt="small rain icon">
-                    <button class="close">&times;</button>
-                </div>
-                <ul class="favouriteCityMain">
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Ветер</p>
-                        <p class="cityItemPointValue">10.0 m/s, North-northwest</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Облачность</p>
-                        <p class="cityItemPointValue">Broken clouds</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Давление</p>
-                        <p class="cityItemPointValue">1013 hpa</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Влажность</p>
-                        <p class="cityItemPointValue">53%</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Координаты</p>
-                        <p class="cityItemPointValue">[59.88, 30.42]</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="favouriteCity">
-                <div class="favouriteCityHeader">
-                    <h3 class="favouriteCityName">Moscow</h3>
-                    <p class="favouriteCityTemperature">5˚C</p>
-                    <img class="favouriteCityWeatherPicture" src="img.jpg" alt="small rain icon">
-                    <button class="close">&times;</button>
-                </div>
-                <ul class="favouriteCityMain">
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Ветер</p>
-                        <p class="cityItemPointValue">10.0 m/s, North-northwest</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Облачность</p>
-                        <p class="cityItemPointValue">Broken clouds</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Давление</p>
-                        <p class="cityItemPointValue">1013 hpa</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Влажность</p>
-                        <p class="cityItemPointValue">53%</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Координаты</p>
-                        <p class="cityItemPointValue">[59.88, 30.42]</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="favouriteCity">
-                <div class="favouriteCityHeader">
-                    <h3 class="favouriteCityName">Moscow</h3>
-                    <p class="favouriteCityTemperature">5˚C</p>
-                    <img class="favouriteCityWeatherPicture" src="img.jpg" alt="small rain icon">
-                    <button class="close">&times;</button>
-                </div>
-                <ul class="favouriteCityMain">
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Ветер</p>
-                        <p class="cityItemPointValue">10.0 m/s, North-northwest</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Облачность</p>
-                        <p class="cityItemPointValue">Broken clouds</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Давление</p>
-                        <p class="cityItemPointValue">1013 hpa</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Влажность</p>
-                        <p class="cityItemPointValue">53%</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Координаты</p>
-                        <p class="cityItemPointValue">[59.88, 30.42]</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="favouriteCity">
-                <div class="favouriteCityHeader">
-                    <h3 class="favouriteCityName">Moscow</h3>
-                    <p class="favouriteCityTemperature">5˚C</p>
-                    <img class="favouriteCityWeatherPicture" src="img.jpg" alt="small rain icon">
-                    <button class="close">&times;</button>
-                </div>
-                <ul class="favouriteCityMain">
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Ветер</p>
-                        <p class="cityItemPointValue">10.0 m/s, North-northwest</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Облачность</p>
-                        <p class="cityItemPointValue">Broken clouds</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Давление</p>
-                        <p class="cityItemPointValue">1013 hpa</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Влажность</p>
-                        <p class="cityItemPointValue">53%</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Координаты</p>
-                        <p class="cityItemPointValue">[59.88, 30.42]</p>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="favouriteCity">
-                <div class="favouriteCityHeader">
-                    <h3 class="favouriteCityName">Moscow</h3>
-                    <p class="favouriteCityTemperature">5˚C</p>
-                    <img class="favouriteCityWeatherPicture" src="img.jpg" alt="small rain icon">
-                    <button class="close">&times;</button>
-                </div>
-                <ul class="favouriteCityMain">
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Ветер</p>
-                        <p class="cityItemPointValue">10.0 m/s, North-northwest</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Облачность</p>
-                        <p class="cityItemPointValue">Broken clouds</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Давление</p>
-                        <p class="cityItemPointValue">1013 hpa</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Влажность</p>
-                        <p class="cityItemPointValue">53%</p>
-                    </li>
-                    <li class="cityItemPoint">
-                        <p class="cityItemPointName">Координаты</p>
-                        <p class="cityItemPointValue">[59.88, 30.42]</p>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <ul class="favouritesCities"></ul>
     </section>
 </main>
-
+<script src="script.js"></script>
 </body>
 </html>
