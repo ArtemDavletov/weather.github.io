@@ -25,7 +25,7 @@ function request(params) {
         if (response.ok) {
             return response.json();
         } else {
-            alert('Something went wrong ' + url);
+            alert('No such city with params: ' + params[0]);
         }
     }).catch(() => {
         alert('Something went wrong');
@@ -61,15 +61,16 @@ function addSavedCities() {
 
 function addNewCity() {
     const formData = new FormData(addCityForm);
-    const cityName = formData.get('addFavorite').toString();
+    const cityName = formData.get('addFavorite').toString().toLowerCase();
     addCityForm.reset();
     if (localStorage.hasOwnProperty(cityName)) {
+        alert('City exists in favorites');
         return;
     }
     const newCity = appendCityLoader();
     request(['q=' + cityName]).then((jsonResult) => {
         if (jsonResult && !localStorage.hasOwnProperty(jsonResult.name)) {
-            localStorage.setItem(jsonResult.name, '');
+            localStorage.setItem(jsonResult.name.toLowerCase(), '');
             appendCity(jsonResult, newCity);
         } else {
             newCity.remove();
@@ -78,7 +79,7 @@ function addNewCity() {
 }
 
 function removeCity(cityName) {
-    localStorage.removeItem(cityName);
+    localStorage.removeItem(cityName.toLowerCase());
     document.getElementById(split(cityName)).remove();
 }
 
@@ -87,17 +88,22 @@ function fillCurrentCityLoader() {
 }
 
 function fillCurrentCity(queryParams) {
+    // if ('content' in document.createElement('template')) {
+    //     var t = document.querySelector('#currentCity'),
+    //         td = t.content.querySelectorAll("td");
+    // } else {
     request(queryParams).then((jsonResult) => {
         document.getElementsByClassName('currentCityBody')[0].innerHTML = `
-            <div class="currentCityBodyInfo">
-                <h3 class="currentCityName">${jsonResult.name}</h3>
-                <p class="currentCityTemperature">${Math.floor(jsonResult.main.temp)}˚C</p>
-                <img class="currentCityPicture" src="https://openweathermap.org/img/wn/${jsonResult.weather[0]['icon']}@2x.png">
-            </div>
-            <ul class="currentCityItems">
-                ${fillCityUl(jsonResult)}
-            </ul>`;
+           <div class="currentCityBodyInfo">
+               <h3 class="currentCityName">${jsonResult.name}</h3>
+               <p class="currentCityTemperature">${Math.floor(jsonResult.main.temp)}˚C</p>
+               <img class="currentCityPicture" src="https://openweathermap.org/img/wn/${jsonResult.weather[0]['icon']}@2x.png">
+           </div>
+           <ul class="currentCityItems">
+               ${fillCityUl(jsonResult)}
+           </ul>`;
     });
+    // }
 }
 
 function appendCityLoader() {
