@@ -32,7 +32,7 @@ function request(params) {
             alert('No such city with name ' + params[0].substr(2));
         }
     }).catch(() => {
-        // alert('Something went wrong');
+        alert('Something went wrong');
     });
 }
 
@@ -87,23 +87,10 @@ function fillCurrentCityLoader() {
 }
 
 function fillCurrentCity(queryParams) {
-    // if ('content' in document.createElement('template')) {
-    //     var t = document.querySelector('#currentCity'),
-    //         td = t.content.querySelectorAll("td");
-    // } else {
     request(queryParams).then((jsonResult) => {
         document.querySelector(`.lds-spinner`).remove();
         document.getElementsByClassName('currentCityBody')[0].innerHTML = fillCurrentCityTemplate(jsonResult);
-           // <div class="currentCityBodyInfo">
-           //     <h3 class="currentCityName">${jsonResult.name}</h3>
-           //     <p class="currentCityTemperature">${Math.floor(jsonResult.main.temp)}˚C</p>
-           //     <img class="currentCityPicture" src="https://openweathermap.org/img/wn/${jsonResult.weather[0]['icon']}@2x.png">
-           // </div>
-           // <ul class="cityItems">
-           //     ${fillCityUl(jsonResult)}
-           // </ul>`;
     });
-    // }
 }
 
 function appendCityLoader() {
@@ -117,47 +104,8 @@ function appendCityLoader() {
 function appendCity(jsonResult, newCity) {
     const cityName = jsonResult.name;
     newCity.id = split(cityName);
-    // newCity.innerHTML = `<div class="favouriteCityHeader">
-    //                          <h3 class="favouriteCityName">${cityName}</h3>
-    //                          <p class="favouriteCityTemperature">${Math.floor(jsonResult.main.temp)}˚C</p>
-    //                          <img class="favouriteCityPicture" src="https://openweathermap.org/img/wn/${jsonResult.weather[0]['icon']}@2x.png">
-    //                          <button class="close" onclick="removeCity(\'${cityName}\');">&times;</button>
-    //                      </div>
-    //                      <ul class="cityItems">
-    //                          ${fillCityUl(jsonResult)}
-    //                      </ul>`;
     newCity.innerHTML = appendCityTemplate(jsonResult);
 }
-
-function fillCityUl(params) {
-    return fillCityUlTemplate(params)
-}
-
-// function fillCurrentCityUlTemplate(itemsElement, params) {
-//     const detailsElements = itemsElement.querySelectorAll(`.cityItems`);
-//
-//     detailsElements[0].querySelector(`.cityItemPointValue`).textContent = `${params.wind.speed} m/s`;
-//     detailsElements[1].querySelector(`.cityItemPointValue`).textContent = `${params.clouds} %`;
-//     detailsElements[2].querySelector(`.cityItemPointValue`).textContent = `${params.main.pressure} hpa`;
-//     detailsElements[3].querySelector(`.cityItemPointValue`).textContent = `${params.main.humidity} %`;
-//     detailsElements[4].querySelector(`.cityItemPointValue`).textContent = `[${params.coord.lat}, ${params.coord.lon}]`;
-//
-//     return detailsElements;
-// }
-//
-// function appendCityTemplate (params) {
-//     const favoriteItemElement = document.querySelector(`#favourites`).content.cloneNode(true);
-//     const favoriteItemElementHeader = favoriteItemElement.querySelector(`.favouriteCityHeader`);
-//
-//     favoriteItemElementHeader.querySelector(`.favouriteCityName`).textContent = `${params.name}`;
-//     favoriteItemElementHeader.querySelector(`.favouriteCityTemperature`).textContent = `${params.main.temp}°C`;
-//     favoriteItemElementHeader.querySelector(`.favouriteCityPicture`).src = `https://openweathermap.org/img/wn/${params.weather[0]['icon']}@2x.png`;
-//     favoriteItemElementHeader.querySelector(`.close`).onclick = `removeCity(\'${params.name}\');`;
-//
-//     favoriteItemElement.appendChild(fillCurrentCityUlTemplate(favoriteItemElement, params));
-//
-//     return favoriteItemElement;
-// }
 
 function fillCurrentCityTemplate (params) {
     let currentItemElement = document.querySelector(`#currentCity`).content.cloneNode(true).querySelector(`.currentCityBodyInfo`);
@@ -179,22 +127,12 @@ function appendCityTemplate (params) {
     favoriteItemElement.querySelector(`.favouriteCityTemperature`).textContent = `${params.main.temp}°C`;
     favoriteItemElement.querySelector(`.favouriteCityPicture`).src = `https://openweathermap.org/img/wn/${params.weather[0]['icon']}@2x.png`;
     favoriteItemElement.querySelector(`.close`).id = `${params.name}`;
-    // favoriteItemElement.querySelector(`.close`).addEventListener('click',  function (){
-    //     removeCity(this.id);
-    // });
-
-    // favoriteItemElement.appendChild(favoriteItemElementHeader);
-    // favoriteItemElement.appendChild(fillCurrentCityUlTemplate(params));
     favoriteItemElement = fillCurrentCityUlTemplate(favoriteItemElement, params);
-
-    // container.appendChild(favoriteItemElement);
 
     return favoriteItemElement.outerHTML;
 }
 
 function fillCurrentCityUlTemplate(favoriteItemElement, params) {
-    // const weatherDetailsElement = document.querySelector(`#favourites`).content.cloneNode(true).querySelector(`.cityItems`);
-
     const detailsElements = favoriteItemElement.querySelectorAll(`.cityItemPoint`);
 
     detailsElements[0].querySelector(`.cityItemPointValue`).textContent = `${params.wind.speed} m/s`;
