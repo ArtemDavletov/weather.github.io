@@ -84,7 +84,10 @@ function removeCity(cityName) {
 }
 
 function fillCurrentCityLoader() {
-    document.getElementsByClassName('currentCityBody')[0].innerHTML = '<div class="curr"></div>';
+    document.getElementsByClassName('currentCityBody')[0].innerHTML =
+        `<div class="lds-spinner">
+            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+         </div>`;
 }
 
 function fillCurrentCity(queryParams) {
@@ -109,7 +112,9 @@ function fillCurrentCity(queryParams) {
 function appendCityLoader() {
     let newCity = document.createElement('li');
     newCity.className = 'favouriteCity';
-    newCity.innerHTML = '<div class="curr"></div>';
+    newCity.innerHTML = `<div class="lds-spinner">
+                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                         </div>`;
     document.getElementsByClassName('favouritesCities')[0].appendChild(newCity);
     return newCity;
 }
