@@ -29,6 +29,7 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    height: 165px;
 }
 
 .currentCityBodyInfo {
@@ -98,6 +99,7 @@ li.favouriteCity {
     padding: 0;
     border-radius: 5px;
     margin: 10px;
+    /*height: 165px;*/
     width: 390px;
 }
 
@@ -174,9 +176,10 @@ li {
     display: inline-block;
     position: relative;
     width: 64px;
-    height: 165px;
+    height: 64px;
     left: 50%;
     margin-left: -32px;
+    vertical-align: middle;
 }
 .lds-spinner div {
     transform-origin: 32px 32px;

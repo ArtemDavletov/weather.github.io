@@ -1,3 +1,7 @@
+const SPINNER = `<div class="lds-spinner">
+                    <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+                 </div>`;
+
 let refreshForm = document.forms.namedItem('refresh');
 let addCityForm = document.forms.namedItem('addFavorite');
 
@@ -7,7 +11,7 @@ refreshForm.addEventListener('submit', (event) => {
 });
 
 addCityForm.addEventListener('submit', (event) => {
-    addNewCity();
+    addNewCity(event.target);
     event.preventDefault();
 });
 
@@ -28,7 +32,7 @@ function request(params) {
             alert('No such city with name ' + params[0].substr(2));
         }
     }).catch(() => {
-        alert('Something went wrong');
+        // alert('Something went wrong');
     });
 }
 
@@ -59,9 +63,8 @@ function addSavedCities() {
     }
 }
 
-function addNewCity() {
-    const formData = new FormData(addCityForm);
-    const cityName = formData.get('addFavorite').toString().toLowerCase();
+function addNewCity(target) {
+    const cityName = target.addFavorite.value.toLowerCase();
     addCityForm.reset();
     if (localStorage.hasOwnProperty(cityName)) {
         alert('City exists in favorites');
@@ -69,12 +72,8 @@ function addNewCity() {
     }
     const newCity = appendCityLoader();
     request(['q=' + cityName]).then((jsonResult) => {
-        if (jsonResult && !localStorage.hasOwnProperty(jsonResult.name)) {
-            localStorage.setItem(jsonResult.name.toLowerCase(), '');
-            appendCity(jsonResult, newCity);
-        } else {
-            newCity.remove();
-        }
+        localStorage.setItem(jsonResult.name.toLowerCase(), '');
+        appendCity(jsonResult, newCity);
     });
 }
 
@@ -84,10 +83,7 @@ function removeCity(cityName) {
 }
 
 function fillCurrentCityLoader() {
-    document.getElementsByClassName('currentCityBody')[0].innerHTML =
-        `<div class="lds-spinner">
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-         </div>`;
+    document.getElementsByClassName('currentCityBody')[0].insertAdjacentHTML('beforebegin', SPINNER);
 }
 
 function fillCurrentCity(queryParams) {
@@ -96,15 +92,16 @@ function fillCurrentCity(queryParams) {
     //         td = t.content.querySelectorAll("td");
     // } else {
     request(queryParams).then((jsonResult) => {
-        document.getElementsByClassName('currentCityBody')[0].innerHTML = `
-           <div class="currentCityBodyInfo">
-               <h3 class="currentCityName">${jsonResult.name}</h3>
-               <p class="currentCityTemperature">${Math.floor(jsonResult.main.temp)}˚C</p>
-               <img class="currentCityPicture" src="https://openweathermap.org/img/wn/${jsonResult.weather[0]['icon']}@2x.png">
-           </div>
-           <ul class="currentCityItems">
-               ${fillCityUl(jsonResult)}
-           </ul>`;
+        document.querySelector(`.lds-spinner`).remove();
+        document.getElementsByClassName('currentCityBody')[0].innerHTML = fillCurrentCityTemplate(jsonResult);
+           // <div class="currentCityBodyInfo">
+           //     <h3 class="currentCityName">${jsonResult.name}</h3>
+           //     <p class="currentCityTemperature">${Math.floor(jsonResult.main.temp)}˚C</p>
+           //     <img class="currentCityPicture" src="https://openweathermap.org/img/wn/${jsonResult.weather[0]['icon']}@2x.png">
+           // </div>
+           // <ul class="cityItems">
+           //     ${fillCityUl(jsonResult)}
+           // </ul>`;
     });
     // }
 }
@@ -112,9 +109,7 @@ function fillCurrentCity(queryParams) {
 function appendCityLoader() {
     let newCity = document.createElement('li');
     newCity.className = 'favouriteCity';
-    newCity.innerHTML = `<div class="lds-spinner">
-                            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-                         </div>`;
+    newCity.innerHTML = SPINNER;
     document.getElementsByClassName('favouritesCities')[0].appendChild(newCity);
     return newCity;
 }
@@ -122,38 +117,93 @@ function appendCityLoader() {
 function appendCity(jsonResult, newCity) {
     const cityName = jsonResult.name;
     newCity.id = split(cityName);
-    newCity.innerHTML = `<div class="favouriteCityHeader">
-                             <h3 class="favouriteCityName">${cityName}</h3>
-                             <p class="favouriteCityTemperature">${Math.floor(jsonResult.main.temp)}˚C</p>
-                             <img class="favouriteCityPicture" src="https://openweathermap.org/img/wn/${jsonResult.weather[0]['icon']}@2x.png">
-                             <button class="close" onclick="removeCity(\'${cityName}\');">&times;</button>
-                         </div>
-                         <ul class="favouriteCityMain">
-                             ${fillCityUl(jsonResult)}
-                         </ul>`;
+    // newCity.innerHTML = `<div class="favouriteCityHeader">
+    //                          <h3 class="favouriteCityName">${cityName}</h3>
+    //                          <p class="favouriteCityTemperature">${Math.floor(jsonResult.main.temp)}˚C</p>
+    //                          <img class="favouriteCityPicture" src="https://openweathermap.org/img/wn/${jsonResult.weather[0]['icon']}@2x.png">
+    //                          <button class="close" onclick="removeCity(\'${cityName}\');">&times;</button>
+    //                      </div>
+    //                      <ul class="cityItems">
+    //                          ${fillCityUl(jsonResult)}
+    //                      </ul>`;
+    newCity.innerHTML = appendCityTemplate(jsonResult);
 }
 
 function fillCityUl(params) {
-    return `<li class="cityItemPoint">
-                <p class="cityItemPointName">Ветер</p>
-                <p class="cityItemPointValue">${params.wind.speed} m/s</p>
-            </li>
-            <li class="cityItemPoint">
-                <p class="cityItemPointName">Облачность</p>
-                <p class="cityItemPointValue">${params.clouds.all}%</p>
-            </li>
-            <li class="cityItemPoint">
-                <p class="cityItemPointName">Давление</p>
-                <p class="cityItemPointValue">${params.main.pressure} hpa</p>
-            </li>
-            <li class="cityItemPoint">
-                <p class="cityItemPointName">Влажность</p>
-                <p class="cityItemPointValue">${params.main.humidity}%</p>
-            </li>
-            <li class="cityItemPoint">
-                <p class="cityItemPointName">Координаты</p>
-                <p class="cityItemPointValue">[${params.coord.lat}, ${params.coord.lon}]</p>
-            </li>`;
+    return fillCityUlTemplate(params)
+}
+
+// function fillCurrentCityUlTemplate(itemsElement, params) {
+//     const detailsElements = itemsElement.querySelectorAll(`.cityItems`);
+//
+//     detailsElements[0].querySelector(`.cityItemPointValue`).textContent = `${params.wind.speed} m/s`;
+//     detailsElements[1].querySelector(`.cityItemPointValue`).textContent = `${params.clouds} %`;
+//     detailsElements[2].querySelector(`.cityItemPointValue`).textContent = `${params.main.pressure} hpa`;
+//     detailsElements[3].querySelector(`.cityItemPointValue`).textContent = `${params.main.humidity} %`;
+//     detailsElements[4].querySelector(`.cityItemPointValue`).textContent = `[${params.coord.lat}, ${params.coord.lon}]`;
+//
+//     return detailsElements;
+// }
+//
+// function appendCityTemplate (params) {
+//     const favoriteItemElement = document.querySelector(`#favourites`).content.cloneNode(true);
+//     const favoriteItemElementHeader = favoriteItemElement.querySelector(`.favouriteCityHeader`);
+//
+//     favoriteItemElementHeader.querySelector(`.favouriteCityName`).textContent = `${params.name}`;
+//     favoriteItemElementHeader.querySelector(`.favouriteCityTemperature`).textContent = `${params.main.temp}°C`;
+//     favoriteItemElementHeader.querySelector(`.favouriteCityPicture`).src = `https://openweathermap.org/img/wn/${params.weather[0]['icon']}@2x.png`;
+//     favoriteItemElementHeader.querySelector(`.close`).onclick = `removeCity(\'${params.name}\');`;
+//
+//     favoriteItemElement.appendChild(fillCurrentCityUlTemplate(favoriteItemElement, params));
+//
+//     return favoriteItemElement;
+// }
+
+function fillCurrentCityTemplate (params) {
+    let currentItemElement = document.querySelector(`#currentCity`).content.cloneNode(true).querySelector(`.currentCityBodyInfo`);
+    let currentCityItemsElement = document.querySelector(`#currentCity`).content.cloneNode(true).querySelector(`.currentCityItems`);
+
+    currentItemElement.querySelector(`.currentCityName`).textContent = `${params.name}`;
+    currentItemElement.querySelector(`.currentCityTemperature`).textContent = `${params.main.temp}°C`;
+    currentItemElement.querySelector(`.currentCityPicture`).src = `https://openweathermap.org/img/wn/${params.weather[0]['icon']}@2x.png`;
+
+    currentCityItemsElement = fillCurrentCityUlTemplate(currentCityItemsElement, params);
+
+    return currentItemElement.outerHTML + currentCityItemsElement.outerHTML;
+}
+
+function appendCityTemplate (params) {
+    let favoriteItemElement = document.querySelector(`#favourites`).content.cloneNode(true).querySelector(`.favouriteCity`);
+
+    favoriteItemElement.querySelector(`.favouriteCityName`).textContent = `${params.name}`;
+    favoriteItemElement.querySelector(`.favouriteCityTemperature`).textContent = `${params.main.temp}°C`;
+    favoriteItemElement.querySelector(`.favouriteCityPicture`).src = `https://openweathermap.org/img/wn/${params.weather[0]['icon']}@2x.png`;
+    favoriteItemElement.querySelector(`.close`).id = `${params.name}`;
+    // favoriteItemElement.querySelector(`.close`).addEventListener('click',  function (){
+    //     removeCity(this.id);
+    // });
+
+    // favoriteItemElement.appendChild(favoriteItemElementHeader);
+    // favoriteItemElement.appendChild(fillCurrentCityUlTemplate(params));
+    favoriteItemElement = fillCurrentCityUlTemplate(favoriteItemElement, params);
+
+    // container.appendChild(favoriteItemElement);
+
+    return favoriteItemElement.outerHTML;
+}
+
+function fillCurrentCityUlTemplate(favoriteItemElement, params) {
+    // const weatherDetailsElement = document.querySelector(`#favourites`).content.cloneNode(true).querySelector(`.cityItems`);
+
+    const detailsElements = favoriteItemElement.querySelectorAll(`.cityItemPoint`);
+
+    detailsElements[0].querySelector(`.cityItemPointValue`).textContent = `${params.wind.speed} m/s`;
+    detailsElements[1].querySelector(`.cityItemPointValue`).textContent = `${params.clouds.all} %`;
+    detailsElements[2].querySelector(`.cityItemPointValue`).textContent = `${params.main.pressure} hpa`;
+    detailsElements[3].querySelector(`.cityItemPointValue`).textContent = `${params.main.humidity} %`;
+    detailsElements[4].querySelector(`.cityItemPointValue`).textContent = `[${params.coord.lat}, ${params.coord.lon}]`;
+
+    return favoriteItemElement;
 }
 
 getLocation();

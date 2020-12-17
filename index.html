@@ -16,39 +16,44 @@
                 <botton></botton>
             </form>
         </div>
-        <div class="currentCityBody"></div>
-<!--        <template id="currentCity">-->
-<!--            <div class="currentCityBody">-->
-<!--                <div class="currentCityBodyInfo">-->
-<!--                    <h3 class="currentCityName"></h3>-->
-<!--                    <p class="currentCityTemperature"></p>-->
-<!--                    <img class="currentCityPicture">-->
-<!--                </div>-->
-<!--                <ul class="currentCityItems">-->
-<!--                    <li class="cityItemPoint">-->
-<!--                        <p class="cityItemPointName">Ветер</p>-->
-<!--                        <p class="cityItemPointValue"></p>-->
-<!--                    </li>-->
-<!--                    <li class="cityItemPoint">-->
-<!--                        <p class="cityItemPointName">Облачность</p>-->
-<!--                        <p class="cityItemPointValue"></p>-->
-<!--                    </li>-->
-<!--                    <li class="cityItemPoint">-->
-<!--                        <p class="cityItemPointName">Давление</p>-->
-<!--                        <p class="cityItemPointValue"></p>-->
-<!--                    </li>-->
-<!--                    <li class="cityItemPoint">-->
-<!--                        <p class="cityItemPointName">Влажность</p>-->
-<!--                        <p class="cityItemPointValue"></p>-->
-<!--                    </li>-->
-<!--                    <li class="cityItemPoint">-->
-<!--                        <p class="cityItemPointName">Координаты</p>-->
-<!--                        <p class="cityItemPointValue"></p>-->
-<!--                    </li>-->
-<!--                </ul>-->
+<!--        <div class="currentCityBody"></div>-->
+
+        <div class="currentCityBody">
+            <template id="currentCity">
+<!--            <div class="current">-->
+                <div class="currentCityBodyInfo">
+                    <h3 class="currentCityName"></h3>
+                    <p class="currentCityTemperature"></p>
+                    <img class="currentCityPicture">
+                </div>
+
+                <ul class="currentCityItems">
+                    <li class="cityItemPoint">
+                        <p class="cityItemPointName">Ветер</p>
+                        <p class="cityItemPointValue"></p>
+                    </li>
+                    <li class="cityItemPoint">
+                        <p class="cityItemPointName">Облачность</p>
+                        <p class="cityItemPointValue"></p>
+                    </li>
+                    <li class="cityItemPoint">
+                        <p class="cityItemPointName">Давление</p>
+                        <p class="cityItemPointValue"></p>
+                    </li>
+                    <li class="cityItemPoint">
+                        <p class="cityItemPointName">Влажность</p>
+                        <p class="cityItemPointValue"></p>
+                    </li>
+                    <li class="cityItemPoint">
+                        <p class="cityItemPointName">Координаты</p>
+                        <p class="cityItemPointValue"></p>
+                    </li>
+                </ul>
 <!--            </div>-->
-<!--        </template>-->
+        </template>
+        </div>
     </section>
+
     <section class="favourites">
         <div class="favouritesHeader">
             <h2>Избранное</h2>
@@ -58,7 +63,42 @@
             </form>
         </div>
 
-        <ul class="favouritesCities"></ul>
+
+        <ul class="favouritesCities">
+            <template id="favourites">
+                <li class="favouriteCity">
+                    <div class="favouriteCityHeader">
+                        <h3 class="favouriteCityName"></h3>
+                        <p class="favouriteCityTemperature"></p>
+                        <img class="favouriteCityPicture">
+                        <button class="close" onclick="removeCity(this.id);">×</button>
+                    </div>
+
+                    <ul class="cityItems">
+                        <li class="cityItemPoint">
+                            <p class="cityItemPointName">Ветер</p>
+                            <p class="cityItemPointValue"></p>
+                        </li>
+                        <li class="cityItemPoint">
+                            <p class="cityItemPointName">Облачность</p>
+                            <p class="cityItemPointValue"></p>
+                        </li>
+                        <li class="cityItemPoint">
+                            <p class="cityItemPointName">Давление</p>
+                            <p class="cityItemPointValue"></p>
+                        </li>
+                        <li class="cityItemPoint">
+                            <p class="cityItemPointName">Влажность</p>
+                            <p class="cityItemPointValue"></p>
+                        </li>
+                        <li class="cityItemPoint">
+                            <p class="cityItemPointName">Координаты</p>
+                            <p class="cityItemPointValue"></p>
+                        </li>
+                    </ul>
+                </li>
+            </template>
+        </ul>
     </section>
 </main>
 <script src="script.js"></script>
