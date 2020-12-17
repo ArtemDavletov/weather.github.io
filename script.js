@@ -25,7 +25,7 @@ function request(params) {
         if (response.ok) {
             return response.json();
         } else {
-            alert('No such city with params: ' + params[0]);
+            alert('No such city with name ' + params[0].substr(2));
         }
     }).catch(() => {
         alert('Something went wrong');
