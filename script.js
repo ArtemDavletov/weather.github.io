@@ -64,7 +64,9 @@ function addSavedCities() {
 }
 
 function addNewCity(target) {
-    const cityName = target.addFavorite.value.toLowerCase();
+    const value = target.addFavorite.value.replace(/\'/g, "\"").replace(/\"/g, '\\"');
+    console.log(value);
+    const cityName = value.toLowerCase();
     addCityForm.reset();
     if (localStorage.hasOwnProperty(cityName)) {
         alert('City exists in favorites');
@@ -74,6 +76,8 @@ function addNewCity(target) {
     request(['q=' + cityName]).then((jsonResult) => {
         localStorage.setItem(jsonResult.name.toLowerCase(), '');
         appendCity(jsonResult, newCity);
+    }).catch(() => {
+        newCity.remove();
     });
 }
 
